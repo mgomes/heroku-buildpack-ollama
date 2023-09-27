@@ -8,11 +8,12 @@ echo "-----> Installing Ollama..."
 rm -rf "$BUILD_DIR/.heroku/ollama"
 mkdir -p $BUILD_DIR/.heroku/ollama
 cd "$BUILD_DIR/.heroku/ollama"
-curl -L https://ollama.ai/download/ollama-linux-amd64
+curl -A "heroku-buildpack-ollama" -s --retry 3 -L https://ollama.ai/download/ollama-linux-amd64 -o ollama
+chmod +x ollama
 
 # Add binary to PATH
 mkdir -p "$BUILD_DIR/.profile.d"
-echo 'export PATH="$PATH:$HOME/.heroku/ollama/"' >> $BUILD_DIR/.profile.d/ollama.sh
+echo 'export PATH="$PATH:$HOME/.heroku/ollama"' >> $BUILD_DIR/.profile.d/ollama.sh
 chmod +x "$BUILD_DIR/.profile.d/ollama.sh"
 
 "$BUILD_DIR/.heroku/ollama" -v
