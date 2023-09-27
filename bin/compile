@@ -5,9 +5,6 @@ BUILD_DIR=$1
 echo "-----> Installing Ollama..."
 
 # Download and install Ollama binary
-chmod +x /tmp/ollama
-
-# Move the binary to the build directory
 rm -rf "$BUILD_DIR/.heroku/ollama"
 mkdir -p $BUILD_DIR/.heroku/ollama
 cd "$BUILD_DIR/.heroku/ollama"
