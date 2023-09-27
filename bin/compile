@@ -1,0 +1,18 @@
+#!/bin/sh
+
+BUILD_DIR=$1
+
+echo "-----> Installing Ollama..."
+
+# Download and install Ollama binary
+curl -L https://ollama.ai/download/ollama-linux-amd64 -o /tmp/ollama
+chmod +x /tmp/ollama
+
+# Move the binary to the build directory
+mkdir -p $BUILD_DIR/.heroku/ollama
+mv /tmp/ollama $BUILD_DIR/.heroku/ollama/
+
+# Add binary to PATH
+echo 'export PATH="$PATH:$HOME/.heroku/ollama/"' >> $BUILD_DIR/.profile.d/ollama.sh
+
+echo "-----> Ollama installation done"
