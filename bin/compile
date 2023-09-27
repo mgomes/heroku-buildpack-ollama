@@ -16,5 +16,5 @@ mkdir -p "$BUILD_DIR/.profile.d"
 echo 'export PATH="$PATH:$HOME/.heroku/ollama"' >> $BUILD_DIR/.profile.d/ollama.sh
 chmod +x "$BUILD_DIR/.profile.d/ollama.sh"
 
-"$BUILD_DIR/.heroku/ollama/ollama" -v
+"$BUILD_DIR/.heroku/ollama/ollama" --version
 echo "-----> Ollama installation done"
